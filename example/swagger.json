@@ -1,0 +1,172 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Products Service API",
+    "description": "Product Service",
+    "version": "v1"
+  },
+  "paths": {
+    "/products": {
+      "get": {
+        "tags": ["Products"],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "products limit.",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Product"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Products"],
+        "summary": "Add new product",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["title", "description", "price", "category", "image", "rating"],
+                "properties": {
+                  "title": { "type": "string" },
+                  "description": { "type": "string" },
+                  "price": { "type": "number" },
+                  "category": { "type": "string" },
+                  "image": { "type": "string" },
+                  "rating": {
+                    "type": "object",
+                    "properties": {
+                      "rate": { "type": "number" },
+                      "count": { "type": "number" }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Product added successfully"
+          }
+        }
+      }
+    },
+    "/products/{id}": {
+      "put": {
+        "tags": ["Products"],
+        "summary": "Update product by id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": { "type": "string" },
+                  "description": { "type": "string" },
+                  "price": { "type": "number" },
+                  "category": { "type": "string" },
+                  "image": { "type": "string" },
+                  "rating": {
+                    "type": "object",
+                    "properties": {
+                      "rate": { "type": "number" },
+                      "count": { "type": "number" }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Product updated successfully"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Products"],
+        "summary": "Delete product by id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Product deleted successfully"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Product": {
+        "type": "object",
+        "required": ["id", "title", "description", "price", "category", "image", "rating"],
+        "properties": {
+          "id": { "type": "number" },
+          "title": { "type": "string" },
+          "price": { "type": "number" },
+          "description": { "type": "string" },
+          "category": { "type": "string" },
+          "image": { "type": "string" },
+          "rating": {
+            "$ref": "#/components/schemas/Rating"
+          }
+        }
+      },
+      "Rating": {
+        "type": "object",
+        "required": ["rate", "count"],
+        "properties": {
+          "rate": { "type": "number" },
+          "count": { "type": "number" }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Products",
+      "description": "Product services"
+    }
+  ]
+}

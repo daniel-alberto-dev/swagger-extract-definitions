@@ -1,0 +1,17 @@
+{
+  "name": "swagger-extract-definitions-example",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Daniel Alberto <daniel.developer.us@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "generate:types": "swagger-extract-definitions --targetFile=./swagger.json --outDir=./src"
+  },
+  "dependencies": {
+    "swagger-extract-definitions": "../",
+    "typescript": "^5.8.2"
+  },
+  "engines": {
+    "node": "22.*"
+  }
+}
