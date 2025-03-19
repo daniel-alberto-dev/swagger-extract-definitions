@@ -40,7 +40,7 @@ const options = {
   },
   ignoreHead: {
     type: 'boolean',
-    describe: 'Compile Head',
+    describe: 'Ignore HEAD endpoints',
     default: false,
   },
   fileName: {
