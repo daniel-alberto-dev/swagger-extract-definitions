@@ -45,7 +45,14 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["title", "description", "price", "category", "image", "rating"],
+                "required": [
+                  "title",
+                  "description",
+                  "price",
+                  "category",
+                  "image",
+                  "rating"
+                ],
                 "properties": {
                   "title": { "type": "string" },
                   "description": { "type": "string" },
@@ -140,7 +147,15 @@
     "schemas": {
       "Product": {
         "type": "object",
-        "required": ["id", "title", "description", "price", "category", "image", "rating"],
+        "required": [
+          "id",
+          "title",
+          "description",
+          "price",
+          "category",
+          "image",
+          "rating"
+        ],
         "properties": {
           "id": { "type": "number" },
           "title": { "type": "string" },

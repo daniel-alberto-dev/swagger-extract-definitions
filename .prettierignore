@@ -1,3 +1,2 @@
 *.yml
-build/
-example/src/types.ts
+dist/

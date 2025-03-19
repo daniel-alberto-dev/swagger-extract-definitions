@@ -1,7 +1,17 @@
-/build
+/dist
 node_modules
 
 .DS_Store
+
+.idea
+
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
 
 npm-debug.log*
 yarn-debug.log*
