@@ -46,7 +46,8 @@ export default [
   },
   {
     ignores: [
-      '*.d.ts',
+      '**/*.js',
+      '**/*.d.ts',
       'dist/',
       'example/',
       'node_modules/',
