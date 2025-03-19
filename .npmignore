@@ -8,7 +8,6 @@ node_modules/*
 src/*
 typings/*
 .eslintignore
-.eslintrc.js
 .gitignore
 .prettierignore
 .prettierrc
@@ -16,3 +15,4 @@ jest.config.js
 tsconfig.json
 yarn-error.log
 yarn.lock
+eslint.config.js
