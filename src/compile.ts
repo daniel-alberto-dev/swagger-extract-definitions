@@ -20,7 +20,7 @@ const transformResponse = (title: string, config: Config): JSONSchema4[] =>
   Object.keys(config).map((key) => {
     const item = config[key];
 
-    let schema = item?.content?.['application/json']?.schema || item?.schema;
+    const schema = item?.content?.['application/json']?.schema || item?.schema;
 
     if (schema?.$ref) {
       return schema;
@@ -38,7 +38,7 @@ const transformSchemaLevel = (
   list: CachedSchemas
 ) => {
   const result = list.reduce<JSONSchema4>((acc, { name, capitalized }) => {
-    let properties = schema[name];
+    const properties = schema[name];
 
     if (properties) {
       const newTitle = properties?.title || title + capitalized;
@@ -144,7 +144,7 @@ const transformRootLevel = (
 const transformPath = (path: string) => path.replace(/\{([^}]+)\}/g, ':$1');
 
 export const compile = async (
-  routes: any,
+  routes: Route[],
   definitions: JSONSchema4,
   ignoreHead: boolean,
   compilerOptions: CompilerOptions = {}
