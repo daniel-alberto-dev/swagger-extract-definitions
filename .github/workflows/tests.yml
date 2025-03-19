@@ -36,3 +36,9 @@ jobs:
 
       - name: Run typecheck
         run: yarn run typecheck
+
+      - name: Run linter
+        run: yarn run lint
+
+      - name: Run unit tests
+        run: yarn run test

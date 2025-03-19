@@ -6,10 +6,13 @@ example/*
 node_modules/*
 src/*
 typings/*
+.eslintignore
+.eslintrc.js
 .gitignore
 .prettierignore
 .prettierrc
 tsconfig.json
+jest.config.js
 tsup.config.ts
 yarn-error.log
 yarn.lock
