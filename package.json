@@ -1,6 +1,6 @@
 {
   "name": "swagger-extract-definitions",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Retrieves TypeScript definitions from Swagger json files",
   "repository": {
     "type": "git",
@@ -20,7 +20,7 @@
   "bugs": {
     "url": "https://github.com/daniel-alberto-dev/swagger-extract-definitions/issues"
   },
-  "main": "./dist",
+  "main": "./build/src",
   "homepage": "https://github.com/daniel-alberto-dev/swagger-extract-definitions#readme",
   "scripts": {
     "build": "tsc -b",
@@ -55,7 +55,7 @@
     "typescript": "^5.8.2",
     "typescript-eslint": "^8.26.1"
   },
-  "bin": "dist/index.js",
+  "bin": "build/src/index.js",
   "engines": {
     "node": ">=22.0.0"
   }
