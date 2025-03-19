@@ -1,7 +1,8 @@
+__tests__/*
 .github/*
 .husky/*
 .vscode/*
-.yarn/*
+build/__tests__/*
 example/*
 node_modules/*
 src/*
@@ -11,8 +12,7 @@ typings/*
 .gitignore
 .prettierignore
 .prettierrc
-tsconfig.json
 jest.config.js
-tsup.config.ts
+tsconfig.json
 yarn-error.log
 yarn.lock

@@ -46,13 +46,11 @@ export default [
   },
   {
     ignores: [
-      '**/*.js',
-      '**/*.d.ts',
-      'dist/',
+      '*.d.ts',
+      'build/',
       'example/',
       'node_modules/',
       'eslint.config.js',
-      'tsup.config.ts',
       'jest.config.js',
     ],
   },
