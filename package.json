@@ -1,6 +1,6 @@
 {
   "name": "swagger-extract-definitions",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Retrieves TypeScript definitions from Swagger json files",
   "repository": {
     "type": "git",
