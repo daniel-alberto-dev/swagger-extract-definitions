@@ -68,6 +68,7 @@ export const patchCompilerOptions = (
       ...options.$refOptions,
       resolve: {
         file: {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           read: (file: any) => {
             const key = file.url.substring(cwd.length);
             const text = definitions[key] || definitions[key.slice(1)];
@@ -112,6 +113,7 @@ export const validateSwaggerJson = (filePath: string) => {
 
   try {
     accessSync(fullPath, constants.R_OK);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (e) {
     throw new Error(
       `Can't resolve the Swagger file: '${fullPath}'.\nFile does not exist or you do not have access rights.`
@@ -121,6 +123,7 @@ export const validateSwaggerJson = (filePath: string) => {
   let fileContent: string;
   try {
     fileContent = readFileSync(fullPath, 'utf-8');
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (e) {
     throw new Error(
       `Can't read the Swagger file: '${fullPath}'.\nMake sure the file is accessible.`
@@ -130,6 +133,7 @@ export const validateSwaggerJson = (filePath: string) => {
   let swaggerJson;
   try {
     swaggerJson = JSON.parse(fileContent);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (e) {
     throw new Error(
       `Invalid JSON format in Swagger file: '${fullPath}'.\nCheck for syntax errors.`
@@ -150,6 +154,7 @@ export const validateDirectory = (dir: string, name: string) => {
 
   try {
     accessSync(directory, constants.R_OK);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (e) {
     throw new Error(
       `Can't resolve the ${name}: '${directory}'.
