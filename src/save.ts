@@ -10,8 +10,9 @@ export const save = async (text: string, path: string) => {
     if (data.toString() === text) {
       return;
     }
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (e) {
-    console.error(e);
+    /* empty */
   }
 
   await promises.writeFile(filePath, text);
