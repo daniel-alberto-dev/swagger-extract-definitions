@@ -77,4 +77,6 @@ export const compilerOptions: CompilerOptions = {
     trailingComma: 'es5',
   },
   unreachableDefinitions: true,
+  additionalProperties: false,
+  unknownAny: true,
 };
