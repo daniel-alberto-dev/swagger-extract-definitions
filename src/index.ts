@@ -12,6 +12,7 @@ import {
   compilerOptions,
   isIgnoreHead,
   output,
+  rootName,
   targetFile,
 } from './constants';
 
@@ -19,6 +20,7 @@ export * from './types';
 export * from './compile';
 export * from './save';
 export * from './prettify';
+export * from './utils';
 
 (async () => {
   const openApiSpec = JSON.parse(readFileSync(targetFile, 'utf-8'));
@@ -30,7 +32,7 @@ export * from './prettify';
   const definitions = modifiedJsonSchema['components']['schemas'];
 
   const [{ text }, prettier] = await Promise.all([
-    compile(routes, definitions, isIgnoreHead, compilerOptions),
+    compile(routes, definitions, rootName, isIgnoreHead, compilerOptions),
     prettify(compilerOptions),
   ]);
 
