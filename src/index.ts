@@ -1,41 +1,58 @@
 #!/usr/bin/env node
 'use strict';
-import { readFileSync } from 'fs';
+import fs from 'fs';
 import openapiSchemaToJsonSchema from '@openapi-contrib/openapi-schema-to-json-schema';
 
 import { save } from './save';
 import { compile } from './compile';
 import { prettify } from './prettify';
-import { replaceRefs } from './utils';
+import { generateRootFromFile, replaceRefs, validateJsonFile } from './utils';
 import {
   bannerComment,
   compilerOptions,
   isIgnoreHead,
   output,
-  rootName,
-  targetFile,
+  targetDir,
 } from './constants';
+import path from 'path';
 
 export * from './types';
-export * from './compile';
-export * from './save';
-export * from './prettify';
-export * from './utils';
 
 (async () => {
-  const openApiSpec = JSON.parse(readFileSync(targetFile, 'utf-8'));
+  const filesContent = fs.readdirSync(targetDir).map((filename) => {
+    const filePath = path.join(targetDir, filename);
+    const fileContent = validateJsonFile(filePath);
 
-  const jsonSchema = openapiSchemaToJsonSchema(openApiSpec);
-  const modifiedJsonSchema = replaceRefs(jsonSchema);
+    const jsonSchema = openapiSchemaToJsonSchema(fileContent);
+    const modifiedJsonSchema = replaceRefs(jsonSchema);
 
-  const routes = modifiedJsonSchema['paths'];
-  const definitions = modifiedJsonSchema['components']['schemas'];
+    const routes = modifiedJsonSchema['paths'];
+    const definitions = modifiedJsonSchema['components']['schemas'];
 
-  const [{ text }, prettier] = await Promise.all([
-    compile(routes, definitions, rootName, isIgnoreHead, compilerOptions),
-    prettify(compilerOptions),
-  ]);
+    return {
+      routes,
+      definitions,
+      rootName: generateRootFromFile(filename),
+    };
+  });
 
-  const formatted = await prettier(bannerComment + text);
+  const compiledContentCb = filesContent.map(
+    async ({ routes, definitions, rootName }) => {
+      const { text } = await compile(
+        routes,
+        definitions,
+        rootName,
+        isIgnoreHead,
+        compilerOptions
+      );
+
+      return text;
+    }
+  );
+
+  const generated = await Promise.all(compiledContentCb);
+  const prettier = await prettify();
+
+  const formatted = await prettier(bannerComment + generated.join(' '));
   await save(formatted, output);
 })();

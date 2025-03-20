@@ -90,6 +90,9 @@ export const patchCompilerOptions = (
   };
 };
 
+export const generateRootFromFile = (filename: string) =>
+  filename.replace('.json', '').toUpperCase() + '_API';
+
 export const replaceRefs = (schema: JSONSchema4) => {
   if (typeof schema === 'object' && schema !== null) {
     if (schema.$ref && typeof schema.$ref === 'string') {
@@ -108,7 +111,7 @@ export const replaceRefs = (schema: JSONSchema4) => {
   return schema;
 };
 
-export const validateSwaggerJson = (filePath: string) => {
+export const validateJsonFile = (filePath: string) => {
   const fullPath = resolve(process.cwd(), filePath);
 
   try {
@@ -116,7 +119,7 @@ export const validateSwaggerJson = (filePath: string) => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (e) {
     throw new Error(
-      `Can't resolve the Swagger file: '${fullPath}'.\nFile does not exist or you do not have access rights.`
+      `Can't resolve the Json file: '${fullPath}'.\nFile does not exist or you do not have access rights.`
     );
   }
 
@@ -126,7 +129,7 @@ export const validateSwaggerJson = (filePath: string) => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (e) {
     throw new Error(
-      `Can't read the Swagger file: '${fullPath}'.\nMake sure the file is accessible.`
+      `Can't read the Json file: '${fullPath}'.\nMake sure the file is accessible.`
     );
   }
 
@@ -136,7 +139,7 @@ export const validateSwaggerJson = (filePath: string) => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (e) {
     throw new Error(
-      `Invalid JSON format in Swagger file: '${fullPath}'.\nCheck for syntax errors.`
+      `Invalid JSON format in Json file: '${fullPath}'.\nCheck for syntax errors.`
     );
   }
 

@@ -2,10 +2,8 @@ import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
 import { resolve, join } from 'path';
 
-import { validateDirectory, validateSwaggerJson } from './utils';
+import { validateDirectory } from './utils';
 import { CompilerOptions } from './types';
-
-export const rootName = 'API';
 
 export const bannerComment = `
 /**
@@ -33,10 +31,10 @@ const options = {
     describe: 'Save output to the directory',
     default: './src/shared/api',
   },
-  targetFile: {
+  targetDir: {
     type: 'string',
-    describe: 'Target file `swagger.json`',
-    default: './scripts/generated/swagger.json',
+    describe: 'Target directory with `.json` files',
+    default: './scripts/generated/schemas',
   },
   ignoreHead: {
     type: 'boolean',
@@ -52,8 +50,8 @@ const options = {
 
 const args = yargs(hideBin(process.argv))
   .options(options)
-  .check(({ targetFile, outDir }) => {
-    validateSwaggerJson(targetFile);
+  .check(({ targetDir, outDir }) => {
+    validateDirectory(targetDir, 'targetDir');
     validateDirectory(outDir, 'outDir');
 
     return true;
@@ -67,7 +65,7 @@ export const { ignoreHead: isIgnoreHead, fileName } = args;
 
 export const outDir = resolve(process.cwd(), args.outDir);
 export const output = join(outDir, fileName);
-export const targetFile = resolve(process.cwd(), args.targetFile);
+export const targetDir = resolve(process.cwd(), args.targetDir);
 
 export const compilerOptions: CompilerOptions = {
   style: {

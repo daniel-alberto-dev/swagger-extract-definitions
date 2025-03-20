@@ -13,7 +13,7 @@ export type ProductsIdPutReply = Ok | Error;
 
 export type ProductsIdDeleteReply = Ok | Error;
 
-export interface API {
+export interface PRODUCTS_API {
   '/products': {
     GET: ProductsGet;
     POST: ProductsPost;
