@@ -16,6 +16,9 @@ import {
 } from './constants';
 
 export * from './types';
+export * from './compile';
+export * from './save';
+export * from './prettify';
 
 (async () => {
   const openApiSpec = JSON.parse(readFileSync(targetFile, 'utf-8'));
