@@ -5,7 +5,6 @@ import {
   cachedSchemas,
   cachedSchemasWithBody,
   methodsWithBody,
-  rootName,
 } from './constants';
 import {
   capitalize,
@@ -146,6 +145,7 @@ const transformPath = (path: string) => path.replace(/\{([^}]+)\}/g, ':$1');
 export const compile = async (
   routes: Route[],
   definitions: JSONSchema4,
+  rootName: string,
   ignoreHead: boolean,
   compilerOptions: CompilerOptions = {}
 ) => {
