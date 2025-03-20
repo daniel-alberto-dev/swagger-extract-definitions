@@ -5,7 +5,7 @@
   "author": "Daniel Alberto <daniel.developer.us@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "generate:types": "swagger-extract-definitions --targetFile=./swagger.json --outDir=./src"
+    "generate:types": "swagger-extract-definitions --targetDir=./schemas --outDir=./src"
   },
   "dependencies": {
     "swagger-extract-definitions": "../",
