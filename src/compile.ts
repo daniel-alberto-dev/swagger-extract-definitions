@@ -152,7 +152,7 @@ export const compile = async (
   const options = patchCompilerOptions(compilerOptions, definitions);
 
   const properties = transformRootLevel(routes, ignoreHead);
-  const schema = { ...createSchemaObject(rootName, properties), definitions };
+  const schema = { ...createSchemaObject(rootName, properties) };
 
   const text = await compileJson(schema, rootName, options);
 

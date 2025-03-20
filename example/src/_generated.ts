@@ -7,11 +7,11 @@ export type ProductsGetReply = ProductsGetReplyStatus200;
 
 export type ProductsGetReplyStatus200 = Product[];
 
-export type ProductsPostReply = ProductsPostReplyStatus201;
+export type ProductsPostReply = Ok | Error;
 
-export type ProductsIdPutReply = ProductsIdPutReplyStatus200;
+export type ProductsIdPutReply = Ok | Error;
 
-export type ProductsIdDeleteReply = ProductsIdDeleteReplyStatus204;
+export type ProductsIdDeleteReply = Ok | Error;
 
 export interface API {
   '/products': {
@@ -41,13 +41,11 @@ export interface Product {
   category: string;
   image: string;
   rating: Rating;
-  [k: string]: unknown;
 }
 
 export interface Rating {
   rate: number;
   count: number;
-  [k: string]: unknown;
 }
 
 export interface ProductsPost {
@@ -64,13 +62,19 @@ export interface ProductsPostBody {
   rating: {
     rate?: number;
     count?: number;
-    [k: string]: unknown;
   };
-  [k: string]: unknown;
 }
 
-export interface ProductsPostReplyStatus201 {
-  [k: string]: unknown;
+export interface Ok {
+  status: string;
+}
+
+/**
+ * Error response
+ */
+export interface Error {
+  error: string;
+  message?: string;
 }
 
 export interface ProductsIdPut {
@@ -88,17 +92,11 @@ export interface ProductsIdPutBody {
   rating?: {
     rate?: number;
     count?: number;
-    [k: string]: unknown;
   };
-  [k: string]: unknown;
 }
 
 export interface ProductsIdPutParams {
   id: number;
-}
-
-export interface ProductsIdPutReplyStatus200 {
-  [k: string]: unknown;
 }
 
 export interface ProductsIdDelete {
@@ -108,33 +106,4 @@ export interface ProductsIdDelete {
 
 export interface ProductsIdDeleteParams {
   id: number;
-}
-
-export interface ProductsIdDeleteReplyStatus204 {
-  [k: string]: unknown;
-}
-
-/**
- * This interface was referenced by `API`'s JSON-Schema
- * via the `definition` "Product".
- */
-export interface Product1 {
-  id: number;
-  title: string;
-  price: number;
-  description: string;
-  category: string;
-  image: string;
-  rating: Rating;
-  [k: string]: unknown;
-}
-
-/**
- * This interface was referenced by `API`'s JSON-Schema
- * via the `definition` "Rating".
- */
-export interface Rating1 {
-  rate: number;
-  count: number;
-  [k: string]: unknown;
 }
